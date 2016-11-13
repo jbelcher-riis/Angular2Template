@@ -9,6 +9,7 @@ const reload = browserSync.reload;
 const sass = require('gulp-sass');
 const concat = require('gulp-concat');
 const minify = require('gulp-minify-css');
+const tsfmt = require('gulp-tsfmt');
 
 gulp.task('tslint', function() {
   return gulp.src('app/**/*.ts')
@@ -31,6 +32,12 @@ gulp.task('sass', function(){
     .pipe(concat('styles.css'))
     .pipe(minify())
     .pipe(gulp.dest(''))
+});
+
+gulp.task('format', () => {
+  gulp.src('**/*.ts')
+    .pipe(tsfmt())
+    .pipe(gulp.dest(''));
 });
 
 gulp.task('serve', ['build'], function() {
