@@ -40,7 +40,10 @@
     "gulp-typescript": "^2.8.0",
     "gulp-tslint": "^3.6.0",
     "tsconfig-glob": "^0.3.3",
-    "gulp-sourcemaps": "^1.6.0"
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-sass": "^2.0.4",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-concat": "^2.6.0"
 
   }
 }

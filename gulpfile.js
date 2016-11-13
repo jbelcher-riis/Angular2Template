@@ -6,6 +6,9 @@ const tscConfig = require('./tsconfig.json');
 const sourcemaps = require('gulp-sourcemaps');
 const tsconfig = require('tsconfig-glob');
 const reload = browserSync.reload;
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
+const minify = require('gulp-minify-css');
 
 gulp.task('tslint', function() {
   return gulp.src('app/**/*.ts')
@@ -22,6 +25,14 @@ gulp.task('compile', function () {
     .pipe(gulp.dest('app'));
 });
 
+gulp.task('sass', function(){
+  return gulp.src('scss/*.scss')
+    .pipe(sass()) 
+    .pipe(concat('styles.css'))
+    .pipe(minify())
+    .pipe(gulp.dest(''))
+});
+
 gulp.task('serve', ['build'], function() {
   browserSync({
     server: {
@@ -29,9 +40,9 @@ gulp.task('serve', ['build'], function() {
     }
   });
 
-  gulp.watch(['app/**/*', 'index.html', 'styles.css'], ['buildAndReload']);
+  gulp.watch(['app/**/*.ts', 'index.html', 'styles.css','*/*.scss'], ['buildAndReload']);
 });
 
-gulp.task('build', ['tslint', 'compile']);
+gulp.task('build', ['tslint', 'sass', 'compile']);
 gulp.task('buildAndReload', ['build'], reload);
 gulp.task('default', ['build']);
