@@ -6,3 +6,6 @@ npm install
 
 **Commands**
 npm start - compiles js and starts the lite server
+gulp - builds
+gulp serves - builds and serves
+gulp format - formats ts files
